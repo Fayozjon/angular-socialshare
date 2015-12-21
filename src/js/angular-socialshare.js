@@ -352,6 +352,34 @@
               'https://www.xing.com/spi/shares/new?url=' + encodeURIComponent(data.url || $location.absUrl()) + followUrl
               , 'sharer', 'toolbar=0,status=0,width=' + data.popupWidth + ',height=' + data.popupHeight);
         };
+		
+		//CybernatiC Addins
+		// http://github.com/Fayozjon/angular-socialshare
+		
+		//done: Ok.ru 
+		
+	    $scope.okShare = function manageOkShare(data) { 
+          $window.open(
+            'http://ok.ru/dk?st.cmd=addShare&st.s=1&st._surl=' + encodeURIComponent(data.url || $location.absUrl()) + '&st.comments=' + encodeURIComponent(data.text)
+            , 'sharer', 'toolbar=0,status=0,width=' + data.popupWidth + ',height=' + data.popupHeight);
+        };
+		
+		//done: mail.ru
+		$scope.mailruShare = function manageMailruShare(data) {
+          $window.open(
+            'http://connect.mail.ru/share?url=' + encodeURIComponent(data.url || $location.absUrl()) + '&title='
+			+ encodeURIComponent(data.text) 
+            , 'sharer', 'toolbar=0,status=0,width=' + data.popupWidth + ',height=' + data.popupHeight);
+        };
+		//done: telegram
+		$scope.telegramShare = function manageTelegramShare(data) {
+          $window.open(
+            'https://telegram.me/share/url?url=' + encodeURIComponent(data.url || $location.absUrl()) + '&text='
+			+ encodeURIComponent(data.text) 
+            , 'sharer', 'toolbar=0,status=0,width=' + data.popupWidth + ',height=' + data.popupHeight);
+        };
+		 
+		
 
         element.bind(properties.eventTrigger, function onEventTriggered() {
 
@@ -455,6 +483,20 @@
             case 'xing': {
 
               $scope.xingShare(properties);
+              break;
+            }
+			//New addings by CybernatiC 
+			//http://github.com/Fayozjon/angular-socialshare
+			case 'telegram': {
+              $scope.telegramShare(properties);
+              break;
+            }
+			case 'mailru': {
+              $scope.mailruShare(properties);
+              break;
+            }
+			case 'ok': {
+              $scope.okShare(properties);
               break;
             }
 
